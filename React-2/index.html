@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cricket Scoreboard</title>
+    <style>
+      /* CSS styles for scoreboard and buttons here */
+
+      body{
+        background-color: #333333;
+      }
+
+      #scoreboard {
+        text-align: center;
+        margin: 20px;
+        padding: 20px;
+        border: 2px solid #ccc;
+        border-radius: 8px;
+        max-width: 300px;
+        margin: 100px auto;
+        background-color: wheat;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        font-family: sans-serif;
+      }
+
+      button {
+        margin: 5px;
+        padding: 10px;
+        font-size: 16px;
+        cursor: pointer;
+        font-family: sans-serif;
+        font-weight: 600;
+        border-radius: 8px;
+        border-color: #333333;
+      }
+
+      h2{
+        font-family: sans-serif;
+        font-size: 28px;
+      }
+
+      p{
+        font-family: sans-serif;
+        font-weight: 600;
+        font-size: 20px;
+      }
+      
+      button:hover {
+        background-color: #ccc;
+        color: #333333;
+      }
+    </style>
+
+  </head>
+  <body>
+
+    <div id="root"></div>
+
+    <script src="https://unpkg.com/react@18.2.0/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+
+    <script type="text/babel">
+
+      var { useState } = React;
+
+      // CricketScoreboard Component
+      function CricketScoreboard() {
+        var [runs, setRuns] = useState(0);
+        var [wickets, setWickets] = useState(0);
+
+        var increaseRuns = (value) => {
+          setRuns(runs + value);
+        };
+
+        var updateWicket = () => {
+          if (wickets < 10) {
+            setWickets(wickets + 1);
+          }
+        };
+
+        return (
+          <div id="scoreboard">
+            <h2>Cricket Scoreboard</h2>
+            <p>Runs: {runs}</p>
+            <p>Wickets: {wickets}</p>
+            <button onClick={() => increaseRuns(4)}>Increase runs by 4</button>
+            <button onClick={() => increaseRuns(8)}>Increase runs by 8</button>
+            <button onClick={() => increaseRuns(3)}>Increase runs by 3</button>
+            <button onClick={updateWicket}>Update Wicket</button>
+          </div>
+        );
+      }
+
+      // Render the CricketScoreboard component
+      ReactDOM.render(<CricketScoreboard />, document.getElementById("root"));
+      
+    </script>
+  </body>
+</html>

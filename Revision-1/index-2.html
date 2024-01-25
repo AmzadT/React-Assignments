@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>React Boilerplate Code</title>
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color:grey;
+        }
+
+        h2{
+            color: teal;
+        }
+        h3{
+            color: tomato;
+        }
+        h4{
+            color: blue;
+        }
+      
+    </style>
+</head>
+
+<body>
+
+    <div id="root"></div>
+
+    <script src="https://www.unpkg.com/react@18.2.0/umd/react.development.js"></script>
+    <script src="https://www.unpkg.com/react-dom@18.2.0/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+
+
+    <script type="text/babel">
+        // Task 1: Basic Component Creation
+        function User(props) {
+            return (
+                <>
+                    <h2>Name: {props.name}</h2>
+                    <h4>Age: {props.age}</h4>
+                    <h5>Email: {props.email}</h5>
+                </>
+            );
+        }
+
+        function ScoreCard(props) {
+            return <h3>Score: {props.score}</h3>;
+        }
+
+        // Task 2: Container Component with Children Props
+        function ContainerWithBlueBorder({ children }) {
+            return (
+                <div style={{
+                    border: '2px solid blue',
+                    padding: '10px',
+                    margin: '10px',
+                    width:"300px",
+                    height:"auto",
+                    borderRadius: "8px",
+                    backgroundColor: "wheat",
+                    margin:"10px auto",
+                    marginTop: "10px",
+
+                }}>
+                    {children}
+                </div>
+            );
+        }
+
+        // Task 3: App Component and Composition
+        function App() {
+            return (
+                <div>
+                    <ContainerWithBlueBorder>
+                        <User name="Amzad Hussain" age="23" email="amzadhussain7250@gmail.com" />
+                    </ContainerWithBlueBorder>
+
+                    <ContainerWithBlueBorder>
+                        <ScoreCard score="90" />
+                    </ContainerWithBlueBorder>
+                </div>
+            );
+        }
+
+        // Task 4 (Bonus): Dynamic Container Component
+        function Container({ children, borderColor }) {
+            return (
+                <div style={{
+                    border: `1px solid ${borderColor}`,
+                    padding: '25px',
+                    margin: '25px'
+                }}>
+                    {children}
+                </div>
+            );
+        }
+
+        // Subtask 2: Demonstrate usage of Container component
+        function AnotherApp() {
+            return (
+                <div>
+                    <Container borderColor="red">
+                        <p>This is a red container</p>
+                    </Container>
+
+                    <Container borderColor="green">
+                        <User name="Jane Doe" age="30" email="jane@example.com" />
+                    </Container>
+                </div>
+            );
+        }
+
+        ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+
+        // Uncomment the line below to render AnotherApp and test the bonus task.
+        // ReactDOM.createRoot(document.getElementById("root")).render(<AnotherApp />);
+        
+    </script>
+</body>
+
+</html>
